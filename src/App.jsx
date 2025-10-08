@@ -2,14 +2,13 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ProductList from "./components/ProductList";
 import OrderForm from "./components/OrderForm";
 import OrderList from "./components/OrderList";
-import Navbar from "./components/Navbar";
-
+import NavBar from "./components/NavBar";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      <NavBar />
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/newCommand" element={<OrderForm />} />
