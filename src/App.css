@@ -1,6 +1,41 @@
 body {
   color: #1d190c;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 50px;
+  background-color: #1d190c;
+  color: #dbd4c1;
+}
+
+.logo {
+  width: 6rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #86702b;
+}
+
 
 .product-list {
   display: flex;
@@ -33,7 +68,7 @@ body {
   font-weight: bold;
   color: #86702b;
 }
-.product-title {
+.title {
   text-align: center;
 }
 .btn-add {

@@ -1,12 +1,21 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ProductList from "./components/ProductList";
-import "./App.css"
+import OrderForm from "./components/OrderForm";
+import OrderList from "./components/OrderList";
+import Navbar from "./components/Navbar";
+
+import "./App.css";
+
 function App() {
   return (
-    <div className="App">
-      <h1 className="product-title">Nos Produits</h1>
-      <ProductList />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/newCommand" element={<OrderForm />} />
+        <Route path="/listCommand" element={<OrderList />} />
+      </Routes>
+    </Router>
   );
 }
 
