@@ -1,43 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { OrderContext } from "../context/OrderContext";
 
 function OrderList() {
-  const [commandes, setCommandes] = useState([
-    {
-      id: 1,
-      nomClient: "Zakia Taoufik",
-      telephone: "06 12 34 56 78",
-      produits: "Huile Vierge",
-      total: "150 DH",
-      date: "09/10/2025",
-      statut: "Livrée",
-    },
-    {
-      id: 2,
-      nomClient: "Imane Samira",
-      telephone: "06 45 78 12 90",
-      produits: "Miel Naturel",
-      total: "120 DH",
-      date: "08/10/2025",
-      statut: "En cours",
-    },
-  ]);
+  const { orders, setOrders } = useContext(OrderContext);
 
-  // ---- حالات (states) ديال الـ popup ----
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showModifyPopup, setShowModifyPopup] = useState(false);
-
   const [commandeToDelete, setCommandeToDelete] = useState(null);
   const [commandeToModify, setCommandeToModify] = useState(null);
-  const [newStatus, setNewStatus] = useState(""); // الحالة الجديدة اللي يختارها المستخدم
+  const [newStatus, setNewStatus] = useState("");
 
-  // ---- Supprimer ----
   const handleSupprimer = (id) => {
     setCommandeToDelete(id);
     setShowDeletePopup(true);
   };
 
   const confirmDelete = () => {
-    setCommandes(commandes.filter((c) => c.id !== commandeToDelete));
+    setOrders(orders.filter((c) => c.id !== commandeToDelete));
     setShowDeletePopup(false);
     setCommandeToDelete(null);
   };
@@ -47,15 +26,18 @@ function OrderList() {
     setCommandeToDelete(null);
   };
 
-  // ---- Modifier ----
   const handleModifier = (id) => {
     setCommandeToModify(id);
     setShowModifyPopup(true);
   };
 
   const confirmModify = () => {
-    setCommandes(
-      commandes.map((c) =>
+    if (!newStatus) {
+      alert("Veuillez choisir un statut !");
+      return;
+    }
+    setOrders(
+      orders.map((c) =>
         c.id === commandeToModify ? { ...c, statut: newStatus } : c
       )
     );
@@ -74,60 +56,64 @@ function OrderList() {
     <div className="orders-container">
       <h2 className="title">Liste des commandes</h2>
 
-      <table className="orders-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nom du client</th>
-            <th>Téléphone</th>
-            <th>Produits</th>
-            <th>Total</th>
-            <th>Date</th>
-            <th>Statut</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {commandes.map((cmd) => (
-            <tr key={cmd.id}>
-              <td>{cmd.id}</td>
-              <td>{cmd.nomClient}</td>
-              <td>{cmd.telephone}</td>
-              <td>{cmd.produits}</td>
-              <td>{cmd.total}</td>
-              <td>{cmd.date}</td>
-              <td>
-                <span
-                  className={`status ${
-                    cmd.statut === "Livrée"
-                      ? "status-success"
-                      : cmd.statut === "En cours"
-                      ? "status-pending"
-                      : "status-other"
-                  }`}
-                >
-                  {cmd.statut}
-                </span>
-              </td>
-              <td className="actions">
-                <button
-                  className="btn edit"
-                  onClick={() => handleModifier(cmd.id)}
-                >
-                  Modifier
-                </button>
-                <button
-                  className="btn delete"
-                  onClick={() => handleSupprimer(cmd.id)}
-                >
-                  Supprimer
-                </button>
-              </td>
+      {orders.length === 0 ? (
+        <p>Aucune commande pour le moment.</p>
+      ) : (
+        <table className="orders-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom du client</th>
+              <th>Téléphone</th>
+              <th>Produits</th>
+              <th>Total</th>
+              <th>Date</th>
+              <th>Statut</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {orders.map((cmd) => (
+              <tr key={cmd.id}>
+                <td>{cmd.id}</td>
+                <td>{cmd.nomClient}</td>
+                <td>{cmd.telephone}</td>
+                <td>{cmd.produits}</td>
+                <td>{cmd.total}</td>
+                <td>{cmd.date}</td>
+                <td>
+                  <span
+                    className={`status ${
+                      cmd.statut === "Livrée"
+                        ? "status-success"
+                        : cmd.statut === "En cours"
+                        ? "status-pending"
+                        : "status-other"
+                    }`}
+                  >
+                    {cmd.statut}
+                  </span>
+                </td>
+                <td className="actions">
+                  <button
+                    className="btn edit"
+                    onClick={() => handleModifier(cmd.id)}
+                  >
+                    Modifier
+                  </button>
+                  <button
+                    className="btn delete"
+                    onClick={() => handleSupprimer(cmd.id)}
+                  >
+                    Supprimer
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
 
       {/* ---- POPUP DELETE ---- */}
       {showDeletePopup && (
@@ -147,12 +133,10 @@ function OrderList() {
         </div>
       )}
 
-      {/* ---- POPUP MODIFY ---- */}
       {showModifyPopup && (
         <div className="popup-overlay">
           <div className="popup">
             <h3>Modifier le statut</h3>
-
             <label htmlFor="status">Nouveau statut :</label>
             <select
               id="status"
