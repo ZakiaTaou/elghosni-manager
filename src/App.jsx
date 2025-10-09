@@ -10,8 +10,7 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<ProductList />} />
-        <Route path="/newCommand" element={<OrderForm />} />
+        <Route path="/" element={<><OrderForm /> <ProductList /></>} />
         <Route path="/listCommand" element={<OrderList />} />
       </Routes>
     </Router>

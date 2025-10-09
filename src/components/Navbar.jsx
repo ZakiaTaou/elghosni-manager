@@ -12,9 +12,8 @@ function NavBar() {
             alt="logo"
           />
         <div className="nav-links">
-          <Link to="/" className="link">Produits</Link>
-          <Link to="/newCommand" className="link">Nouvelle Commande</Link>
-          <Link to="/listCommand" className="link">Commandes</Link>
+          <Link to="/" className="link">Nouvelles Commande</Link>
+          <Link to="/listCommand" className="link">Liste des Commandes</Link>
         </div>
      
     </nav>
