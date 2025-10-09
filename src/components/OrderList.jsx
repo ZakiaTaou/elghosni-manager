@@ -146,6 +146,8 @@ function OrderList() {
               <option value="">-- Sélectionnez --</option>
               <option value="En cours">En cours</option>
               <option value="Livrée">Livrée</option>
+              <option value="Annuler">Annuler</option>
+
             </select>
 
             <div className="popup-buttons">

@@ -92,7 +92,7 @@ const OrderForm = () => {
               className="product-image"
             />
             <h3>{product.name}</h3>
-            <p>{product.price} MAD</p>
+            <p className="price">{product.price} MAD</p>
             <div className="setQuantite">
               <label>Quantité:</label>
               <input
@@ -107,11 +107,13 @@ const OrderForm = () => {
             </div>
           </div>
         ))}
-        
       </div>
-      <button className="btn-add" onClick={handleSubmit}>
-        Confirmer la commande
-      </button>
+      <div className="btn-container">
+        <button className="btn-confirm" onClick={handleSubmit}>
+          Confirmerla commande
+        </button>
+      </div>
+        
     </div>
   );
 };
