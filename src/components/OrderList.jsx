@@ -115,7 +115,6 @@ function OrderList() {
         </table>
       )}
 
-      {/* ---- POPUP DELETE ---- */}
       {showDeletePopup && (
         <div className="popup-overlay">
           <div className="popup">
