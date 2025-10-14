@@ -4,8 +4,10 @@ import OrderList from "./components/OrderList";
 import NavBar from "./components/NavBar";
 import { OrderProvider } from "./context/OrderContext";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [activePage,setActivePage]=useState("home")
   return (
     <OrderProvider>
       <Router>

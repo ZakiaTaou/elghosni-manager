@@ -3,6 +3,21 @@ import { OrderContext } from "../context/OrderContext";
 
 function OrderList() {
   const { orders, setOrders } = useContext(OrderContext);
+  let [v,setV] = useState("zakia")
+  const myFun = ()=>{
+    setV("mohamed") 
+  }
+
+  let [counter,setCounter]=useState(0)
+  const incrF =()=>{
+    setCounter((perv)=>perv+1)
+  }
+
+
+
+
+
+
 
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showModifyPopup, setShowModifyPopup] = useState(false);
@@ -54,6 +69,8 @@ function OrderList() {
 
   return (
     <div className="orders-container">
+      <h1>{counter}</h1>
+      <button onClick={()=>incrF()}>change name</button>
       <h2 className="title">Liste des commandes</h2>
 
       {orders.length === 0 ? (
