@@ -1,56 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { OrderContext } from "../context/OrderContext";
-import productsData from "../data/products";
+import { useStore } from "../store/useStore";
 
-const OrderForm = () => {
-  const { addOrder } = useContext(OrderContext);
+function OrderForm() {
+  const { addOrder, products: storeProducts } = useStore();
   const navigate = useNavigate();
   const [client, setClient] = useState({ name: "", phone: "" });
-  const [products, setProducts] = useState(
-    productsData.map((p) => ({ ...p, quantity: 0 }))
-  );
+  const [products, setProducts] = useState(storeProducts.map(p => ({ ...p, quantity: 0 })));
 
   const handleQuantityChange = (id, quantity) => {
-    setProducts(
-      products.map((p) =>
-        p.id === id ? { ...p, quantity: Number(quantity) } : p
-      )
-    );
+    setProducts(products.map(p => p.id === id ? { ...p, quantity: Number(quantity) } : p));
   };
 
   const handleSubmit = () => {
-    if (!client.name || !client.phone) {
-      alert("Veuillez remplir les informations du client !");
-      return;
-    }
+    if (!client.name || !client.phone) return alert("Veuillez remplir les infos du client");
+    const selectedProducts = products.filter(p => p.quantity > 0);
+    if (!selectedProducts.length) return alert("Sélectionnez au moins un produit");
 
-    const selectedProducts = products.filter((p) => p.quantity > 0);
-
-    if (selectedProducts.length === 0) {
-      alert("Veuillez sélectionner au moins un produit !");
-      return;
-    }
-
-    const total = selectedProducts.reduce(
-      (sum, p) => sum + p.price * p.quantity,
-      0
-    );
-
+    const total = selectedProducts.reduce((sum, p) => sum + p.price * p.quantity, 0);
     const newOrder = {
       id: Date.now(),
       nomClient: client.name,
       telephone: client.phone,
-      produits: selectedProducts
-        .map((p) => `${p.name} x${p.quantity}`)
-        .join(", "),
-      total: `${total} DH`,
-      date: `${new Date().toLocaleDateString()}`,
+      produits: selectedProducts.map(p => `${p.name} x${p.quantity}`).join(", "),
+      total: `${total}`,
+      date: new Date().toLocaleDateString(),
       statut: "En cours",
     };
 
     addOrder(newOrder);
-    navigate("/listCommand");
+    navigate("/orders");
   };
 
   return (
@@ -115,6 +94,6 @@ const OrderForm = () => {
         
     </div>
   );
-};
+}
 
 export default OrderForm;
