@@ -6,14 +6,6 @@ body {
   font-family: sans-serif;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3px 50px;
-  background-color: #1d190c;
-  color: #dbd4c1;
-}
 
 .logo {
   width: 6rem;
@@ -41,7 +33,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  width: 90vw;
+  width: 70vw;
   margin: 10px auto;
 }
 
@@ -71,7 +63,7 @@ body {
 .btn-container {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .btn-confirm {
   background-color: #86702b;
@@ -99,21 +91,23 @@ body {
 .setQuantite input {
   border: 1px solid #86702b;
   border-radius: 5px;
-  width: 35px;
+  width: 55px;
   height: 20px;
   outline-color: #493d19;
 }
 
-.form-container {
+.form-container,.form-container-p {
   width: 65vw;
   margin: 40px auto;
   background: #fff;
   border: 1px solid #dbd4c1;
   border-radius: 6px;
-  padding: 20px 30px;
+  padding: 10px 30px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
+.form-container-p .form-group{
+  gap: 0.5rem;
+}
 .section-title {
   font-size: 1.3rem;
   font-weight: bold;
@@ -176,24 +170,19 @@ input:focus {
   color: #333;
 }
 
-.orders-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.orders-table th,
-.orders-table td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
 }
 
-.orders-table th {
+th {
   background-color: #f2f2f2;
   font-weight: 600;
 }
 
-.orders-table tr:nth-child(even) {
+tr:nth-child(even) {
   background-color: #fafafa;
 }
 
@@ -323,7 +312,7 @@ option:hover {
 
 /* Sidebar */
 .sidebar {
-  width: 220px;
+  width: 250px;
   background-color: #1d190c;
   color: #dbd4c1;
   padding: 20px;
@@ -369,7 +358,6 @@ option:hover {
   justify-content: space-between;
   background-color: #dbd4c1;
   padding: 10px 20px;
-  margin-bottom: 20px;
   border-radius: 6px;
 }
 
@@ -377,43 +365,7 @@ option:hover {
   width: 50px;
 }
 
-/* Product card */
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
 
-.product-card {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.product-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.product-card button {
-  margin: 5px 2px;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.product-card button:hover {
-  opacity: 0.8;
-}
-
-/* Orders table */
 .orders-container table {
   width: 100%;
   border-collapse: collapse;
@@ -444,20 +396,5 @@ option:hover {
 .status-pending { background-color: #da7909; }
 .status-other { background-color: #757667; }
 
-/* Formulaire */
-.form-container {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
 
-.form-container input {
-  width: 100%;
-  padding: 6px 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #86702b;
-  outline: none;
-}
 

@@ -9,7 +9,7 @@ function Layout() {
       <Sidebar />
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <NavBar />
-        <main >
+        <main style={{ flex: 1, overflowY: "auto" }}>
           <Outlet />
         </main>
       </div>

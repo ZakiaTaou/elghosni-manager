@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 function Sidebar() {
   return (
     <div className="sidebar">
-      <h2>Menu</h2>
+      <img className="logo" src={logo} alt="logo" />
       <NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>
         Dashboard
       </NavLink>
