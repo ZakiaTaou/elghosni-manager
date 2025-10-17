@@ -207,10 +207,12 @@ tr:nth-child(even) {
 }
 .actions {
   display: flex;
+  justify-content: center;
   gap: 6px;
 }
 
-.btn {
+
+.btn, .actions button {
   border: none;
   padding: 6px 10px;
   border-radius: 6px;
@@ -220,21 +222,21 @@ tr:nth-child(even) {
   transition: 0.2s;
 }
 
-.btn.edit {
+.btn.edit,.actions .edit{
   background-color: #1b7072;
   color: white;
 }
 
-.btn.edit:hover {
+.btn.edit:hover,.actions .edit:hover {
   background-color: #175f61;
 }
 
-.btn.delete {
+.btn.delete, .actions .delete {
   background-color: #c46716;
   color: white;
 }
 
-.btn.delete:hover {
+.btn.delete:hover, .actions .delete:hover {
   background-color: #b45f15;
 }
 
@@ -304,13 +306,11 @@ option:hover {
   font-family: sans-serif;
 }
 
-/* Layout principal */
 .app-layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
   width: 250px;
   background-color: #1d190c;
@@ -344,28 +344,94 @@ option:hover {
   font-weight: bold;
 }
 
-/* Main content */
 .main-content {
   flex: 1;
   background-color: #f5f5f5;
   padding: 20px;
 }
 
-/* NavBar */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  height: 5rem;
   background-color: #dbd4c1;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 10px 20px
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  border-bottom: solid 2px #dbd4c1;
+  margin-bottom: 3rem;
+
+}
+.logo-container img{
+  width: 5rem;
+  margin-bottom: 1rem;
+
+}
+.dashboard-container {
+  max-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.navbar .logo {
-  width: 50px;
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: #333;
+}
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 900px;
 }
 
+.card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s ease;
+}
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.card .icon {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-orders p, .card-orders .icon{
+  color: #6aa84f;
+}
+.card-products p,.card-products .icon {
+  color: #d9a441;
+}
+.card-revenue p,.card-revenue .icon {
+  color: #0e5cc2;
+}
 .orders-container table {
   width: 100%;
   border-collapse: collapse;

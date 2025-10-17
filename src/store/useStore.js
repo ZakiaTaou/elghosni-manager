@@ -1,25 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import miel from "../assets/miel.jpg"
 
 export const useStore = create(
   persist(
     (set) => ({
       // --- Products ---
-  products: [
-  {
-    id: 1,
-    name: "Huile Vierge",
-    price: 150,
-    image: miel,
-  },
-  {
-    id: 2,
-    name: "Miel Naturel",
-    price: 120,
-    image: miel,
-  },
-],
+  products: [],
       addProduct: (product) =>
         set((state) => ({ products: [...state.products, product] })),
       updateProduct: (id, updated) =>

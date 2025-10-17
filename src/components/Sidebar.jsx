@@ -5,7 +5,10 @@ import logo from "../assets/logo.png";
 function Sidebar() {
   return (
     <div className="sidebar">
-      <img className="logo" src={logo} alt="logo" />
+    <div className="logo-container">
+      <img src={logo} alt="logo" />
+
+    </div>
       <NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>
         Dashboard
       </NavLink>

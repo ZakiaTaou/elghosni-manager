@@ -3,7 +3,7 @@ import React from "react";
 function NavBar() {
   return (
     <nav className="navbar">
-      <h1>El GOUSNI MANAGER</h1>
+      <h1>Cooperative EL Ghousni</h1>
     </nav>
   );
 }

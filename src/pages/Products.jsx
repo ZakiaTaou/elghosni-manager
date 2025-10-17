@@ -5,7 +5,6 @@ function Products() {
   const { products, addProduct, updateProduct, deleteProduct } = useStore();
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
 
   const [imageFile, setImageFile] = useState(null);
   const [editingId, setEditingId] = useState(null);
@@ -24,7 +23,7 @@ function Products() {
   };
 
   const handleSubmit = async () => {
-    if (!name || !price || !image) return alert("Remplir tous les champs");
+    if (!name || !price) return alert("Remplir tous les champs");
 
     let imageBase64 = "../assets/logo.png";
     if (imageFile) imageBase64 = await fileToBase64(imageFile);
@@ -89,8 +88,8 @@ function Products() {
             <h3>{p.name}</h3>
             <p>{p.price} DH</p>
             <div className="actions">
-              <button onClick={() => handleEdit(p)}>Éditer</button>
-              <button onClick={() => deleteProduct(p.id)}>Supprimer</button>
+              <button className="edit" onClick={() => handleEdit(p)}>Éditer</button>
+              <button className="delete" onClick={() => deleteProduct(p.id)}>Supprimer</button>
             </div>
           </div>
         ))}
